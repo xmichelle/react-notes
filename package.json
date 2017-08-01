@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon index.js",
-    "bundle": "browserify -t babelify index.js -o main.js",
-    "bundlewatch": "watchify -t babelify index.js -o main.js"
+    "watch": "nodemon server/index.js",
+    "bundle": "browserify -t babelify client/index.js -o server/public/main.js",
+    "bundlewatch": "watchify -t babelify client/index.js -o server/public/main.js"
   },
   "repository": {
     "type": "git",

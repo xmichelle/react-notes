@@ -9,6 +9,10 @@ const knex = require('knex') ({
   connection: 'postgres://localhost:5432/notes'
 })
 
+const publicPath = path.join(__dirname, 'public')
+const staticMiddleware = express.static(publicPath)
+
+app.use(staticMiddleware)
 app.use(bodyParser.json())
 
 app.get('/notes', (req, res) => {
