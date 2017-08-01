@@ -1,0 +1,8 @@
+
+.ui.menu .note-date {
+  font-size: 0.8rem;
+}
+
+.ui.menu .item > p:first-child {
+  margin-top: 5px;
+}
