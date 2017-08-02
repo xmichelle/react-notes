@@ -1,12 +1,12 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Form = undefined;
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -16,42 +16,62 @@ class Form extends _react2.default.Component {
   constructor(props) {
     super(props);
     this.state = { newNote: [] };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //
-  // }
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('Submitting form');
+
+    const noteData = new FormData(event.target);
+
+    const date = new Date(noteData.get('date'));
+    const dateInMilsec = date.getTime();
+
+    const newNote = {
+      note: noteData.get('text-area'),
+      date: dateInMilsec
+    };
+
+    fetch('./notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newNote)
+    }).catch(err => console.log(err));
+
+    event.target.reset();
+  }
 
   render() {
     return _react2.default.createElement(
-      "div",
-      { className: "ui form" },
+      'form',
+      { className: 'ui form', onSubmit: this.handleSubmit },
       _react2.default.createElement(
-        "div",
-        { className: "field", id: "date" },
+        'div',
+        { className: 'field', id: 'date' },
         _react2.default.createElement(
-          "label",
+          'label',
           null,
-          _react2.default.createElement("input", { type: "date" })
+          _react2.default.createElement('input', { type: 'date', name: 'date' })
         )
       ),
       _react2.default.createElement(
-        "div",
-        { className: "field", id: "text" },
+        'div',
+        { className: 'field', id: 'text' },
         _react2.default.createElement(
-          "label",
+          'label',
           null,
-          "Notes"
+          'Notes'
         ),
-        _react2.default.createElement("textarea", { rows: "24" })
+        _react2.default.createElement('textarea', { rows: '24', name: 'text-area' })
       ),
       _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "button",
-          { className: "ui button", type: "submit" },
-          "Add Note"
+          'button',
+          { className: 'ui button', type: 'submit' },
+          'Add Note'
         )
       )
     );
