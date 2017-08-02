@@ -6,3 +6,25 @@
 .ui.menu .item > p:first-child {
   margin-top: 5px;
 }
+
+#form-container {
+  margin-top: 20px;
+  margin-left: 215px;
+  float: left;
+}
+
+#text {
+  width: 500px;
+}
+
+#date {
+  width: 175px;
+  margin-bottom: 10px;
+  position: relative;
+  left: 325px;
+}
+
+.ui.button {
+  position: relative;
+  left: 380px;
+}

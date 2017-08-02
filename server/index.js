@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const path = require('path')
 
-const knex = require('knex') ({
+const knex = require('knex')({
   dialect: 'pg',
   connection: 'postgres://localhost:5432/notes'
 })
@@ -19,8 +19,20 @@ app.get('/notes', (req, res) => {
   knex
     .select('*')
     .from('notes')
+    .orderBy('id', 'desc')
     .then((data) => {
       res.json(data)
+    })
+})
+
+app.post('/notes', (req, res) => {
+  const noteData = req.body
+  knex
+    .insert(noteData)
+    .into('notes')
+    .returning('*')
+    .then((data) => {
+      res.status(201).json(data[0])
     })
 })
 
