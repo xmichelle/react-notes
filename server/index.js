@@ -19,6 +19,7 @@ app.get('/notes', (req, res) => {
   knex
     .select('*')
     .from('notes')
+    .orderBy('id', 'desc')
     .then((data) => {
       res.json(data)
     })
@@ -31,7 +32,7 @@ app.post('/notes', (req, res) => {
     .into('notes')
     .returning('*')
     .then((data) => {
-      res.status(201).json(data)
+      res.status(201).json(data[0])
     })
 })
 

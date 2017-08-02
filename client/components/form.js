@@ -19,14 +19,9 @@ export class Form extends React.Component {
     const newNote = {
       note: noteData.get('text-area'),
       date: dateInMilsec
-    }
+    } // && date !== 'Invalid Date'
 
-    fetch('./notes', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newNote)
-    })
-      .catch(err => console.log(err))
+    this.props.addNote(newNote)
 
     event.target.reset()
   }

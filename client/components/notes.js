@@ -6,14 +6,6 @@ export class NotesList extends React.Component {
     this.state = { noteList: [] }
   }
 
-  componentDidMount() {
-    fetch('/notes')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ noteList: data })
-      })
-  }
-
   convertDate(date) {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -30,17 +22,19 @@ export class NotesList extends React.Component {
 
   render() {
     return (
-      <div className="ui visible sidebar inverted vertical menu">
-        {
-          this.state.noteList.map((note, i) => {
-            return (
-              <a key={ i } className="item">
-                { note.note }
-                <p className="note-date">{ this.convertDate(note.date) }</p>
-              </a>
-            )
-          })
-        }
+      <div className="sidebar-notes">
+        <div className="ui visible sidebar inverted vertical menu">
+          {
+            this.props.notes.map((note, i) => {
+              return (
+                <a key={ i } className="item">
+                  { note.note }
+                  <p className="note-date">{ this.convertDate(note.date) }</p>
+                </a>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }

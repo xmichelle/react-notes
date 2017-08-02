@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { NotesList } from './components/notes'
-import { Form } from './components/form'
+import { App } from './components/app'
 
-ReactDOM.render(<NotesList/>, document.querySelector('.sidebar-notes'))
-ReactDOM.render(<Form/>, document.querySelector('.text-form-container'))
+ReactDOM.render(<App/>, document.querySelector('.container'))
