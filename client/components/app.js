@@ -7,6 +7,7 @@ export class App extends React.Component {
     super(props)
     this.state = { notes: [] }
     this.addNote = this.addNote.bind(this)
+    this.deleteNote = this.deleteNote.bind(this)
   }
 
   componentDidMount() {
@@ -30,11 +31,24 @@ export class App extends React.Component {
       .catch(err => console.log(err))
   }
 
+  deleteNote(id) {
+    fetch('./notes/' + id, {
+      method: 'DELETE'
+    })
+      .then(() => {
+        this.setState({ notes: this.state.notes.filter(note => {
+          return note.id !== Number(id)
+        })
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div>
         <div className="sidebar-notes">
-          <NotesList notes={this.state.notes} />
+          <NotesList notes={this.state.notes} handleClick={this.deleteNote}/>
         </div>
         <div className="text-form-container" id="form-container">
           <Form addNote={this.addNote}/>
