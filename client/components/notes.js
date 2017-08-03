@@ -4,6 +4,7 @@ export class NotesList extends React.Component {
   constructor(props) {
     super(props)
     this.state = { noteList: [] }
+    this.handleClick = this.handleClick.bind(this)
   }
 
   convertDate(date) {
@@ -31,6 +32,7 @@ export class NotesList extends React.Component {
         })
         })
       })
+      .catch(err => console.log(err))
   }
 
   render() {
