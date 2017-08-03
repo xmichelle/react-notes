@@ -13,17 +13,21 @@ export class Form extends React.Component {
 
     const noteData = new FormData(event.target)
 
-    const date = new Date(noteData.get('date'))
+    const getDate = noteData.get('date')
+    const date = new Date(getDate)
     const dateInMilsec = date.getTime()
 
-    const newNote = {
-      note: noteData.get('text-area'),
-      date: dateInMilsec
-    } // && date !== 'Invalid Date'
-
-    this.props.addNote(newNote)
-
-    event.target.reset()
+    if (getDate === '') {
+      return alert('Must enter a date!')
+    }
+    else {
+      const newNote = {
+        note: noteData.get('text-area'),
+        date: dateInMilsec
+      }
+      this.props.addNote(newNote)
+      event.target.reset()
+    }
   }
 
   render() {
@@ -39,7 +43,7 @@ export class Form extends React.Component {
           <textarea rows="24" name="text-area"></textarea>
         </div>
         <div>
-          <button className="ui button" type="submit">Add Note</button>
+          <button className="ui button" type="submit" id="submit-button">Add Note</button>
         </div>
       </form>
     )

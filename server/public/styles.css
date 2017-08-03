@@ -24,7 +24,11 @@
   left: 325px;
 }
 
-.ui.button {
+#submit-button {
   position: relative;
   left: 380px;
+}
+
+#delete-button {
+  float: right;
 }

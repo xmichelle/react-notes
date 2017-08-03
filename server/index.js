@@ -36,6 +36,15 @@ app.post('/notes', (req, res) => {
     })
 })
 
+app.delete('/notes/:id', (req, res) => {
+  const noteId = Number(req.params.id)
+  knex
+    .where('id', noteId)
+    .del()
+    .from('notes')
+    .then(() => res.sendStatus(204))
+})
+
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })

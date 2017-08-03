@@ -3,7 +3,7 @@ import React from 'react'
 export class NotesList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { noteList: [] }
+    this.state = { notes: [] }
   }
 
   convertDate(date) {
@@ -28,6 +28,11 @@ export class NotesList extends React.Component {
             this.props.notes.map((note, i) => {
               return (
                 <a key={ i } className="item">
+                  <button className="mini ui inverted basic compact icon button"
+                    id="delete-button"
+                    onClick={() => this.props.handleClick(note.id)} >
+                    <i className="close link icon"></i>
+                  </button>
                   { note.note }
                   <p className="note-date">{ this.convertDate(note.date) }</p>
                 </a>
