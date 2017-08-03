@@ -28,6 +28,9 @@ export class NotesList extends React.Component {
             this.props.notes.map((note, i) => {
               return (
                 <a key={ i } className="item">
+                  <button className="mini ui inverted basic compact icon button" id="delete-button">
+                    <i className="close link icon"></i>
+                  </button>
                   { note.note }
                   <p className="note-date">{ this.convertDate(note.date) }</p>
                 </a>

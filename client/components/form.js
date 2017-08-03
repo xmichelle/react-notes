@@ -39,7 +39,7 @@ export class Form extends React.Component {
           <textarea rows="24" name="text-area"></textarea>
         </div>
         <div>
-          <button className="ui button" type="submit">Add Note</button>
+          <button className="ui button" type="submit" id="submit-button">Add Note</button>
         </div>
       </form>
     )
