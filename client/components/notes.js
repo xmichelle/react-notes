@@ -20,6 +20,19 @@ export class NotesList extends React.Component {
     return convertedDate
   }
 
+  handleClick(event) {
+    const noteId = event.target.getAttribute('data-id')
+    fetch('./notes/' + noteId, {
+      method: 'DELETE'
+    })
+      .then(() => {
+        this.setState({ notes: this.props.notes.filter(note => {
+          return note.id !== Number(noteId)
+        })
+        })
+      })
+  }
+
   render() {
     return (
       <div className="sidebar-notes">
@@ -28,7 +41,10 @@ export class NotesList extends React.Component {
             this.props.notes.map((note, i) => {
               return (
                 <a key={ i } className="item">
-                  <button className="mini ui inverted basic compact icon button" id="delete-button">
+                  <button className="mini ui inverted basic compact icon button"
+                    id="delete-button"
+                    data-id={note.id}
+                    onClick={this.handleClick} >
                     <i className="close link icon"></i>
                   </button>
                   { note.note }
