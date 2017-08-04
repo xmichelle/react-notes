@@ -7,7 +7,7 @@ const path = require('path')
 
 const knex = require('knex')({
   dialect: 'pg',
-  connection: 'postgres://localhost:5432/notes'
+  connection: process.env.DATABASE_URL
 })
 
 const publicPath = path.join(__dirname, 'public')

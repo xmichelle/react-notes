@@ -6,9 +6,7 @@ CREATE TABLE notes (
   note      text
 );
 
-SELECT * FROM notes;
-
 ---
 
 -- down
-drop table notes;
+DROP TABLE notes;
