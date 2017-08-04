@@ -8,7 +8,12 @@
     "watch:server": "nodemon server/index.js",
     "bundle": "browserify -t babelify client/index.js -o server/public/main.js",
     "watch:client": "watchify -v -d -t babelify client/index.js -o server/public/main.js",
-    "watch": "run-p watch:client watch:server"
+    "watch": "run-p watch:client watch:server",
+    "db:make": "pg-bump create",
+    "db:up": "pg-bump up",
+    "db:down": "pg-bump down",
+    "db:status": "pg-bump status",
+    "db:rebuild": "pg-bump down && pg-bump up"
   },
   "repository": {
     "type": "git",
@@ -36,12 +41,14 @@
     "htmlhint": "^0.9.13",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
+    "pg-bump": "^1.0.3",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0",
     "watchify": "^3.9.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "knex": "^0.13.0",
     "pg": "^7.0.2",
