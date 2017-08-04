@@ -1,4 +1,4 @@
-
+-- up
 CREATE TABLE notes (
   id        serial,
   user_id   integer,
@@ -6,4 +6,7 @@ CREATE TABLE notes (
   note      text
 );
 
-SELECT * FROM notes;
+---
+
+-- down
+DROP TABLE notes;
