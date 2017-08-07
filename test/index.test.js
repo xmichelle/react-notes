@@ -1,6 +1,10 @@
 const { describe, it } = require('mocha')
 const { expect } = require('chai')
 const request = require('request')
+// const knex = require('knex')({
+//   dialect: 'pg',
+//   connection: process.env.DATABASE_URL
+// })
 
 describe('server fn suite', () => {
 
@@ -28,4 +32,27 @@ describe('server fn suite', () => {
       })
     })
   })
+
+  describe('DELETE /notes/:id', () => {
+    it('deletes a note by id', done => {
+      request('http://localhost:3000/notes', (err, res, body) => {
+        if (err) return done(err)
+        const parsedBody = JSON.parse(body)
+        expect(parsedBody).to.not.equal(undefined)
+        expect(parsedBody).to.be.an('array')
+
+        const [ note ] = parsedBody
+        expect(note).to.be.an('object').with.property('id').that.is.a('number')
+
+        const { id } = note
+
+        request.delete('http://localhost:3000/notes/' + id, (err, res) => {
+          expect(err).to.deep.equal(null)
+          expect(res).to.have.property('statusCode', 204)
+          done()
+        })
+      })
+    })
+  })
 })
+// if 'done' is an anonymous function, how can we call it with done()? and pass in an argument err??
