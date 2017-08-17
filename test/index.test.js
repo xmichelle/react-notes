@@ -1,10 +1,6 @@
 const { describe, it } = require('mocha')
 const { expect } = require('chai')
 const request = require('request')
-// const knex = require('knex')({
-//   dialect: 'pg',
-//   connection: process.env.DATABASE_URL
-// })
 
 describe('server fn suite', () => {
 
@@ -55,4 +51,3 @@ describe('server fn suite', () => {
     })
   })
 })
-// if 'done' is an anonymous function, how can we call it with done()? and pass in an argument err??
